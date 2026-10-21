@@ -28,7 +28,7 @@ export default function Home() {
 
 	useEffect(() => {
 		Promise.allSettled([
-			fetch("/api/projects?limit=6&sort=trending").then((r) => r.json()),
+			fetch("/api/projects/trending").then((r) => r.json()),
 			fetch("/api/projects?limit=6&sort=new-this-week").then((r) => r.json()),
 			fetch("/api/projects?limit=6&sort=top-rated").then((r) => r.json()),
 		])
@@ -177,8 +177,7 @@ export default function Home() {
 									strokeLinejoin="round"
 								>
 									<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-								</svg>
-								Rating Velocity
+								</svg>											Rating Velocity & Recent Ratings
 							</div>
 							<h2 className="font-display font-bold text-2xl sm:text-3xl text-starlight">
 								Trending
