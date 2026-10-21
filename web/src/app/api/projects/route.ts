@@ -34,7 +34,7 @@ export async function GET(request: Request) {
 		}
 
 		if (search && search.trim()) {
-			const cleanSearch = search.replace(/[%_\,()]/g, " ").trim();
+			const cleanSearch = search.replace(/[%_,()]/g, " ").trim();
 			if (cleanSearch) {
 				query = query.or(
 					`name.ilike.%${cleanSearch}%,description.ilike.%${cleanSearch}%,tags.ilike.%${cleanSearch}%`,
@@ -45,10 +45,10 @@ export async function GET(request: Request) {
 		const { data, count, error } = await query;
 		if (error) throw error;
 
-		let projects: Record<string, unknown>[] = (data || []).map((row) => ({
-			...row,
-			id: row.numericId,
-		}));
+	const projects: Record<string, unknown>[] = (data || []).map((row) => ({
+		...row,
+		id: row.numericId,
+	}));
 
 		// Fetch ratings for avg computation & rating velocity
 		const ratingsSnap = await ratingsCol.ref.get();
